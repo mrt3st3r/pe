@@ -9,7 +9,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # locators
 
-address = (By.XPATH, '//*[contains(@id, "AddressPicker-")]')
+address_field = (By.XPATH, '//*[contains(@id, "AddressPicker-")]')
 no_of_people = (By.CSS_SELECTOR, '.required-field > .radio:nth-child(2) > label')
 selectedPlan = (By.LINK_TEXT ,'POPULAR')
 choosePlan = (By.LINK_TEXT ,'Choose plan')
@@ -32,9 +32,7 @@ def wait_for_elem(x):
 #  setting up the driver ( can put in setUp tearDown if there more than 1 tests)
 # chrome_options = Options()
 # chrome_options.add_argument('--headless')
-driver = webdriver.Remote(
-          command_executor='http://localhost:4444/wd/hub',
-          desired_capabilities=DesiredCapabilities.CHROME)
+driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub',desired_capabilities=DesiredCapabilities.CHROME)
 # driver = webdriver.Chrome(executable_path=chromePath)
 driver.maximize_window()
 driver.get(base_url+"residential/all-plans")
@@ -52,8 +50,9 @@ no_customer = driver.find_element(*no_contact_customer)
 no_customer.click()
 print("No Contact Customer - Clicked!")
 
+wait_for_elem(2)
 #  enter address
-addressPicker = driver.find_element(*address)
+addressPicker = driver.find_element(*address_field)
 addressPicker.send_keys(address)
 wait_for_elem(5)
 addressPicker.send_keys(Keys.ARROW_DOWN)
@@ -108,28 +107,28 @@ pGas.click()
 print('Selected Piped gas')
 
 
-# wait_for_elem(2)
+wait_for_elem(2)
 # No of people > 4
 no_of_people = (By.CSS_SELECTOR, '.required-field > .radio:nth-child(5) > label')
 no_of_people = driver.find_element(*no_of_people)
 no_of_people.click()
 print('Number of people Selected = 4')
 
-# wait_for_elem(2)
+wait_for_elem(2)
 # No of people > 3
 no_of_people = (By.CSS_SELECTOR, '.required-field > .radio:nth-child(4) > label')
 no_of_people = driver.find_element(*no_of_people)
 no_of_people.click()
 print('Number of people Selected = 3')
 
-# wait_for_elem(2)
+wait_for_elem(2)
 # No of people >2
 no_of_people = (By.CSS_SELECTOR, '.required-field > .radio:nth-child(3) > label')
 no_of_people = driver.find_element(*no_of_people)
 no_of_people.click()
 print('Number of people Selected  = 2')
 
-# wait_for_elem(3)
+wait_for_elem(3)
 # No of people  >1
 no_of_people = (By.CSS_SELECTOR, '.required-field > .radio:nth-child(2) > label')
 no_of_people = driver.find_element(*no_of_people)
