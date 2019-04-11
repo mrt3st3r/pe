@@ -1,3 +1,10 @@
+"""
+to run:
+1-run docker-compose up (from where the yml file is located)
+2-run docker-compose scale chrome=4
+3- run the test in terminal
+"""
+
 import time
 
 from selenium import webdriver
